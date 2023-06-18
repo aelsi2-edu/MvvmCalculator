@@ -1,0 +1,76 @@
+﻿<Window x:Class="MvvmCalculator.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MVVM Calculator" Width="400" SizeToContent="Height">
+    <Window.Resources>
+        <Style TargetType="FrameworkElement" x:Key="margin">
+            <Setter Property="Margin" Value="3"/>
+        </Style>
+    </Window.Resources>
+    <Grid Style="{StaticResource margin}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Column="0"
+                 Height="24"
+                 VerticalContentAlignment="Center"
+                 Text="{Binding Path=FirstOperand}"
+                 Style="{StaticResource margin}"/>
+        <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" 
+                    Width="24" Height="24" 
+                    Command="{Binding Path=AddCommand}"
+                    Style="{StaticResource margin}">
+                <TextBlock Text="+"/>
+            </Button>
+            <Button Grid.Row="0" Grid.Column="1" 
+                    Width="24" Height="24" 
+                    Command="{Binding Path=SubtractCommand}"
+                    Style="{StaticResource margin}">
+                <TextBlock Text="-"/>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="0" 
+                    Width="24" Height="24" 
+                    Command="{Binding Path=MultiplyCommand}"
+                    Style="{StaticResource margin}">
+                <TextBlock Text="*"/>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="1"
+                    Width="24" Height="24" 
+                    Command="{Binding Path=DivideCommand}"
+                    Style="{StaticResource margin}">
+                <TextBlock Text="/"/>
+            </Button>
+        </Grid>
+        <TextBox Grid.Column="2" 
+                 Height="24"
+                 VerticalContentAlignment="Center"
+                 Text="{Binding Path=SecondOperand}"
+                 Style="{StaticResource margin}"/>
+        <TextBlock Grid.Column="3"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="="
+                   Style="{StaticResource margin}"/>
+        <TextBox Grid.Column="4"
+                 Height="24"
+                 VerticalContentAlignment="Center"
+                 Text="{Binding Path=Result, Mode=OneWay}"
+                 IsReadOnly="True"
+                 Style="{StaticResource margin}"/>
+    </Grid>
+</Window>
